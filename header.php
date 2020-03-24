@@ -68,29 +68,17 @@ foreach( $query as $row ){?>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="index.php">Ana Sayfa</a></li>
-                        <li class="dropdown yamm-fw hasmenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kurumsal<span class="fa fa-angle-down"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-                                        <div class="row">
-
-                                            <div class="col-md-4">
-                                                <ul>
-                                                    <li class="fa fa-angle-down"><a href="#hakkimizda">Hakkımızda</a></li>
-
-                                                </ul>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#nedenbiz">Neden BİZ?</a></li>
+                        <li><a href="#kurumsal">Kurumsal</a></li>
+                        <li><a href="#hizmetlerimiz">Hizmetlerimiz</a></li>
                         <li><a href="#iletisim">İletişim</a></li>
-                        <li class="lastlink hidden-xs hidden-sm"><a class="btn btn-primary" href="#iletisim"><i class="glyphicon glyphicon-search"></i> Bize Ulaşın</a></li>
+                       <?php
+                       $query = $db->query("SELECT telefon from iletisim WHERE id =1")->fetch(PDO::FETCH_ASSOC);
+                       if ( $query ){
+                          $tel=$query["telefon"];
+                       }
+
+                       ?>
+                        <li class="lastlink hidden-xs hidden-sm"><a class="btn btn-primary" href="tel:<?php  echo $tel; ?>"><i class="fa fa-phone"></i> <?php  echo $tel; ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
@@ -100,5 +88,5 @@ foreach( $query as $row ){?>
 <?php
 }
 }
-$db = null;
+
 ?>

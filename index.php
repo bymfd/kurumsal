@@ -12,34 +12,21 @@ include "header.php";
 
 
 
-<div id="hakkimizda " aria-haspopup="true" >
-    <?php
 
-    include "anasayfa.php";
-    ?>
-
-</div>
-
-    <div id="nedenbiz">
+    <div id="kurumsal">
         <?php
 
-        include "anasayfa.php";
+        include "kurumsal.php";
         ?>
 
     </div>
-    <div id="yaptıklarimiz">
+    <div id="hizmetlerimiz">
         <?php
 
-        include "anasayfa.php";
+        include "hizmetlerimiz.php";
         ?>
 
     </div>
-
-    <div id="hakkimizda">
-        <?php
-
-        include "anasayfa.php";
-        ?>
 
     </div>
     <div id="iletisim">
@@ -49,6 +36,14 @@ include "header.php";
         ?>
 
     </div>
+<div id="anasayfa" aria-haspopup="true" >
+    <?php
+
+    include "anasayfa.php";
+    ?>
+
+</div>
+
 
 <div id="iletisima">
 <?php

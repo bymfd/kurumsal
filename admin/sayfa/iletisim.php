@@ -31,9 +31,12 @@ foreach( $query as $row ){?>
                             <i class="text-center">Telefon </i>
                             <input type="tel" value="<?php  echo $row["telefon"]; ?>" minlength="6" maxlength="15" required class="text-box2 btn-block" name="telefon" >
                         </div>
+
+
                         <div class="row p-4" >
-                            <i class="text-center">E-Posta </i>
-                            <input type="tel" value="<?php  echo $row["email"]; ?>" minlength="6" maxlength="50" required class="text-box2 btn-block" name="email" >
+                            <i class="text-center">Fax</i>
+                            <input type="fax" name="fax" minlength="6"  maxlength="20"  required class="text-box-2 btn-block"  value="<?php  echo $row["fax"];?> ">
+
                         </div>
 
                         <div class="row p-4" >
@@ -41,11 +44,21 @@ foreach( $query as $row ){?>
                             <textarea name="adres" minlength="6" maxlength="500"   required class="text-box-2 btn-block"> <?php  echo $row["adres"]; ?> </textarea>
                         </div>
 
+
                         <div class="row p-4" >
-                            <i class="text-center">MAPS KODU </i>
-                            <textarea name="harita" minlength="6"   required class="text-box-2 btn-block"> <?php  echo $row["harita"]; ?> </textarea>
+                            <i class="text-center">Facebook</i>
+                            <input type="text" name="face" minlength="6"  maxlength="50"  required class="text-box-2 btn-block"  value="<?php  echo $row["facebook"];?> ">
 
                         </div>
+
+
+
+                        <div class="row p-4" >
+                            <i class="text-center">İnstagram</i>
+                            <input type="insta" name="insta" minlength="6"  maxlength="50"  required class="text-box-2 btn-block"  value="<?php  echo $row["instagram"];?> ">
+
+                        </div>
+
 
                         <div class="text-center" >
                             <input type=submit class="btn-success rounded-lg " value="kaydet">

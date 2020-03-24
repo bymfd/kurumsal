@@ -67,8 +67,8 @@ catch(PDOException $e)
     elseif ($_POST["sayfa"]=="iletisim") {
 
         try {
-            $query = "UPDATE iletisim SET  telefon=?, adres=? , email=?, harita=? WHERE id=1";
-            $db->prepare($query)->execute([$_POST["telefon"],$_POST["adres"],$_POST["email"],$_POST["harita"]]);
+            $query = "UPDATE iletisim SET  telefon=?, adres=? , instagram=?, facebook=?, fax=? WHERE id=1";
+            $db->prepare($query)->execute([$_POST["telefon"],$_POST["adres"],$_POST["insta"],$_POST["face"],$_POST["fax"]]);
         }
         catch(PDOException $e)
         {
@@ -83,8 +83,72 @@ catch(PDOException $e)
     //iletişim sayfası güncelleme bit
 
 
+    //kurumsalllsayfa güncelle başla
+    elseif ($_POST["sayfa"]=="kurumsal") {
+
+    echo "kurumsal";
+    echo $_POST["baslik"],$_POST["slogan"],$_POST["yazi"];
+        try {
+            $query = "UPDATE kurumsal SET   baslik=?,slogan=?, yazi=? WHERE id=1";
+            $db->prepare($query)->execute([$_POST["baslik"],$_POST["slogan"],$_POST["yazi"]]);
+        }
+        catch(PDOException $e)
+        {
+          header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+        }
 
 
+       header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+    }
+    //kurumsalsayfası güncelleme bit
+    elseif ($_POST["sayfa"]=="yaptiklarimiz") {
+    echo "yaptiklarimöiz";
+        if($_FILES["fileToUpload"]["error"] == 4){
+
+            $query = $db->query("SELECT resim from yaptiklarimiz where id='{$_POST["id"]}'")->fetch(PDO::FETCH_ASSOC);
+            if ( $query ){
+                $resimok=[1,$query["resim"]];
+            }
+
+
+        }
+        else{
+            $resimok = resim_upload();
+
+
+        }
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            try {
+                $query = "UPDATE yaptiklarimiz SET  resim=?, baslik=? , aciklama=? WHERE id='{$_POST["id"]}'";
+                $db->prepare($query)->execute([$resimok[1], $_POST["baslik"], $_POST["aciklama"]]);
+            }
+            catch(PDOException $e)
+            {
+             //   header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+
+         //   header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+        }
+    }
+
+
+
+
+}
+else{
+
+
+    echo  "işini düzgün yap ";
 }
 
 

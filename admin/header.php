@@ -96,7 +96,8 @@ $anadizin=$sabit->anadizin;
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">İçerik yönetimi ayarları:</h6>
                     <a class="collapse-item" href="?sayfa=slider">Slider</a>
-                    <a class="collapse-item" href="?sayfa=hakkimizda">Hakkımızda</a>
+                    <a class="collapse-item" href="?sayfa=kurumsal">Kurumsal</a>
+                    <a class="collapse-item" href="?sayfa=hizmetlerimiz">Hizmetlerimiz</a>
                     <a class="collapse-item" href="?sayfa=yaptiklarimiz">Yaptıklarımız</a>
                 </div>
             </div>
