@@ -63,8 +63,7 @@ $anadizin=$sabit->anadizin;
                                 <thead>
                                 <tr>
                                     <th>İşlem</th>
-                                    <th>Baslik</th>
-                                    <th>Aciklama</th>
+
                                     <th>Resim</th>
 
                                 </tr>
@@ -72,22 +71,21 @@ $anadizin=$sabit->anadizin;
                                 <tfoot>
                                 <tr>
                                     <th>İşlem</th>
-                                    <th>Baslik</th>
-                                    <th>Aciklama</th>
+
                                     <th>Resim</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
 
                                 <?php
-                                $query = $db->query("SELECT * FROM yaptiklarimiz", PDO::FETCH_ASSOC);
+                                $query = $db->query("SELECT * FROM slider", PDO::FETCH_ASSOC);
                                 if ( $query->rowCount() ){
                                 foreach( $query as $row ){?>
 
                                 <tr>
                                     <td>
 
-                                        <a href="fankfonk/fankfonk.php/?durum=sil&id=<?php echo $row["id"];?>&sayfa=yaptiklarimiz" class="fa fa-trash "> </a>
+                                        <a href="fankfonk/fankfonk.php/?durum=sil&id=<?php echo $row["id"];?>&sayfa=slider" class="fa fa-trash "> </a>
 
 
                                         <!-- Button trigger modal -->
@@ -114,21 +112,8 @@ $anadizin=$sabit->anadizin;
 
                                                             <input type="file" class="custom-file" name="fileToUpload" id="fileToUpload" value="gocmez.png" >
 
-                                                            <input type="hidden" name="sayfa" value="yaptiklarimiz" >
+                                                            <input type="hidden" name="sayfa" value="slider" >
                                                             <input type="hidden" name="id" value="<?php echo $row["id"];?>" >
-
-
-                                                            <div class="row p-4" >
-                                                                <i class="text-center">Baslik </i>
-                                                                <input type="text" value="<?php  echo $row["baslik"]; ?>" maxlength="50" required class="text-box2 btn-block" name="baslik" >
-                                                            </div>
-
-
-                                                            <div class="row p-4" >
-                                                                <i class="text-center">Açıklama </i>
-                                                                <input type="text" value="<?php  echo $row["aciklama"]; ?>" maxlength="158" required class="text-box2 btn-block" name="aciklama" >
-                                                            </div>
-
 
 
 
@@ -147,9 +132,6 @@ $anadizin=$sabit->anadizin;
                         </td>
 
 
-                        <td><p  class="overflow-hidden" > <?php  echo substr($row["baslik"],0,10); ?>
-                            </p></td>
-                        <td><p  class="overflow-hidden" > <?php  echo substr($row["aciklama"],0,15); ?> </p></td>
                         <td><img src="http://localhost/gocmeztesisat/images/<?php  echo $row["resim"]; ?>" class="image img-responsive" width="100"  /> </td>
 
                         </tr>

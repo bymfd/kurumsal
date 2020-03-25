@@ -169,7 +169,7 @@ aciklama = ?");
 ///
 ///
     elseif ($_POST["sayfa"] == "hizmetler" and !empty($_POST["id"])) {
-        echo "yaptiklarimöiz";
+
         if ($_FILES["fileToUpload"]["error"] == 4) {
 
             $query = $db->query("SELECT resim from hizmetler where id='{$_POST["id"]}'")->fetch(PDO::FETCH_ASSOC);
@@ -240,6 +240,75 @@ aciklama = ?");
 
 
 
+//slider başla
+
+    elseif ($_POST["sayfa"] == "slider" and !empty($_POST["id"])) {
+
+        if ($_FILES["fileToUpload"]["error"] == 4) {
+
+            $query = $db->query("SELECT resim from slider where id='{$_POST["id"]}'")->fetch(PDO::FETCH_ASSOC);
+            if ($query) {
+                $resimok = [1, $query["resim"]];
+            }
+
+
+        } else {
+            $resimok = resim_upload();
+
+
+        }
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            try {
+                $query = "UPDATE slider SET  resim=? WHERE id='{$_POST["id"]}'";
+                $db->prepare($query)->execute([$resimok[1]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+        }
+    } //slider insert
+
+    elseif ($_POST["sayfa"] == "slider") {
+
+
+        $resimok = resim_upload();
+
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            $query = $db->prepare("INSERT INTO slider SET resim = ?");
+            $insert = $query->execute([$resimok[1]]);
+            if ($insert) {
+                $last_id = $db->lastInsertId();
+                header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+            }else{
+
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
 
 
 
@@ -298,6 +367,37 @@ if(isset($_GET["sayfa"])) {
     //hizmetler silme bit
 
 
+
+
+
+    //slider silme başla
+
+    elseif ($_GET["sayfa"] == "slider" and !empty($_GET["id"])) {
+
+
+        {
+            try {
+
+                $query = $db->prepare("DELETE FROM slider WHERE id =?");
+                $delete = $query->execute([$_GET["id"]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+        }
+
+
+    }
+
+    //sliderr silme bit
+
+
+}
+
+
+function generateRandomString($length = 10) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
 
 function resim_upload()
@@ -338,6 +438,10 @@ function resim_upload()
         $uploadOk = 0;
         return [$uploadOk,"Sadece JPG, JPEG, PNG & GIF Dosyaları kabul edilebilir ."];
 
+    }else{
+        $name= generateRandomString().$imageFileType;
+        $target_file=$target_file = $target_dir .$name;
+
     }
 // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
@@ -345,7 +449,7 @@ function resim_upload()
 // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            return [$uploadOk, basename($_FILES["fileToUpload"]["name"]) ];
+            return [$uploadOk,$name ];
         } else {
             return [$uploadOk,"Resim klosöre yazılırken hata"];
         }
@@ -353,8 +457,4 @@ function resim_upload()
 
 
 }
-
-
-
-
 
