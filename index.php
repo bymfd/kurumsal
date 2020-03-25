@@ -2,13 +2,17 @@
 include "header.php";
 ?>
 
-		<section class="section transheader homepage parallax" data-stellar-background-ratio="0.5" style="background-image:url('upload/bg_04.jpg');">
-			<div class="container">
-				<div class="row">	
-					
-				</div><!-- end row -->
-			</div><!-- end container -->
-		</section><!-- end section -->
+<div class="container-fluid ">
+
+<?php
+
+    include "slider.php";
+?>
+</div>
+
+
+
+
 
 
 
@@ -39,7 +43,7 @@ include "header.php";
 <div id="anasayfa" aria-haspopup="true" >
     <?php
 
-    include "anasayfa.php";
+    include "yaptiklarimiz.php";
     ?>
 
 </div>

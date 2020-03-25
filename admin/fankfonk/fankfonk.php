@@ -2,56 +2,34 @@
 include "db.php";
 
 
-$don= "../index.php?sayfa=".$_POST["sayfa"];
-if (isset($_POST["sayfa"])){
+
+if (isset($_POST["sayfa"])) {
+    $don = "../index.php?sayfa=" . $_POST["sayfa"];
 //ayar sayfası güncelleme başla
-if ($_POST["sayfa"]=="ayar") {
-    if($_FILES["fileToUpload"]["error"] == 4){
+    if ($_POST["sayfa"] == "ayar") {
+        if ($_FILES["fileToUpload"]["error"] == 4) {
 
-        $query = $db->query("SELECT logo from ayar")->fetch(PDO::FETCH_ASSOC);
-        if ( $query ){
-            $logook=[1,$query["logo"]];
-        }
-
-
-    }
-    else{
-        $logook = resim_upload();
-
-
-    }
-    if ($logook[0] == 0) {
-
-        echo $logook[1];
-        header("location:" . $don . "&durum=" . $logook[1]);
-
-    } else {
-try {
-    $query = "UPDATE ayar SET  keywords=?, logo=? , aciklama=?, title=? WHERE id=1";
-    $db->prepare($query)->execute([$_POST["keywords"], $logook[1], $_POST["aciklama"], $_POST["title"]]);
-}
-catch(PDOException $e)
-{
-    header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
-}
-
-
-        header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
-
-
-    }
-}
-//ayar sayfası güncelleme bit
-
-
-        elseif ($_POST["sayfa"]=="user") {
-
-            try {
-                $query = "UPDATE user SET  name=?, pass=? WHERE id=1";
-                $db->prepare($query)->execute([$_POST["name"],$_POST["pass"]]);
+            $query = $db->query("SELECT logo from ayar")->fetch(PDO::FETCH_ASSOC);
+            if ($query) {
+                $logook = [1, $query["logo"]];
             }
-            catch(PDOException $e)
-            {
+
+
+        } else {
+            $logook = resim_upload();
+
+
+        }
+        if ($logook[0] == 0) {
+
+            echo $logook[1];
+            header("location:" . $don . "&durum=" . $logook[1]);
+
+        } else {
+            try {
+                $query = "UPDATE ayar SET  keywords=?, logo=? , aciklama=?, title=? WHERE id=1";
+                $db->prepare($query)->execute([$_POST["keywords"], $logook[1], $_POST["aciklama"], $_POST["title"]]);
+            } catch (PDOException $e) {
                 header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
             }
 
@@ -60,19 +38,34 @@ catch(PDOException $e)
 
 
         }
+    } //ayar sayfası güncelleme bit
+
+
+    elseif ($_POST["sayfa"] == "user") {
+
+        try {
+            $query = "UPDATE user SET  name=?, pass=? WHERE id=1";
+            $db->prepare($query)->execute([$_POST["name"], $_POST["pass"]]);
+        } catch (PDOException $e) {
+            header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+        }
+
+
+        header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+    }
     //user sayfası güncelleme bit
 
 
     //iletişim sayfa güncelle başla
-    elseif ($_POST["sayfa"]=="iletisim") {
+    elseif ($_POST["sayfa"] == "iletisim") {
 
         try {
             $query = "UPDATE iletisim SET  telefon=?, adres=? , instagram=?, facebook=?, fax=? WHERE id=1";
-            $db->prepare($query)->execute([$_POST["telefon"],$_POST["adres"],$_POST["insta"],$_POST["face"],$_POST["fax"]]);
-        }
-        catch(PDOException $e)
-        {
-           header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            $db->prepare($query)->execute([$_POST["telefon"], $_POST["adres"], $_POST["insta"], $_POST["face"], $_POST["fax"]]);
+        } catch (PDOException $e) {
+            header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
         }
 
 
@@ -84,37 +77,37 @@ catch(PDOException $e)
 
 
     //kurumsalllsayfa güncelle başla
-    elseif ($_POST["sayfa"]=="kurumsal") {
+    elseif ($_POST["sayfa"] == "kurumsal") {
 
-    echo "kurumsal";
-    echo $_POST["baslik"],$_POST["slogan"],$_POST["yazi"];
+        echo "kurumsal";
+        echo $_POST["baslik"], $_POST["slogan"], $_POST["yazi"];
         try {
             $query = "UPDATE kurumsal SET   baslik=?,slogan=?, yazi=? WHERE id=1";
-            $db->prepare($query)->execute([$_POST["baslik"],$_POST["slogan"],$_POST["yazi"]]);
-        }
-        catch(PDOException $e)
-        {
-          header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            $db->prepare($query)->execute([$_POST["baslik"], $_POST["slogan"], $_POST["yazi"]]);
+        } catch (PDOException $e) {
+            header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
         }
 
 
-       header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+        header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
 
 
     }
     //kurumsalsayfası güncelleme bit
-    elseif ($_POST["sayfa"]=="yaptiklarimiz") {
-    echo "yaptiklarimöiz";
-        if($_FILES["fileToUpload"]["error"] == 4){
+
+
+    // yaptiklarımız güncellem başla
+    elseif ($_POST["sayfa"] == "yaptiklarimiz" and !empty($_POST["id"])) {
+        echo "yaptiklarimöiz";
+        if ($_FILES["fileToUpload"]["error"] == 4) {
 
             $query = $db->query("SELECT resim from yaptiklarimiz where id='{$_POST["id"]}'")->fetch(PDO::FETCH_ASSOC);
-            if ( $query ){
-                $resimok=[1,$query["resim"]];
+            if ($query) {
+                $resimok = [1, $query["resim"]];
             }
 
 
-        }
-        else{
+        } else {
             $resimok = resim_upload();
 
 
@@ -128,18 +121,124 @@ catch(PDOException $e)
             try {
                 $query = "UPDATE yaptiklarimiz SET  resim=?, baslik=? , aciklama=? WHERE id='{$_POST["id"]}'";
                 $db->prepare($query)->execute([$resimok[1], $_POST["baslik"], $_POST["aciklama"]]);
-            }
-            catch(PDOException $e)
-            {
-             //   header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
             }
 
 
-         //   header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
 
 
         }
+    } //yaptıklarımız insert
+
+    elseif ($_POST["sayfa"] == "yaptiklarimiz") {
+//yaptiklarimiz bit
+
+        $resimok = resim_upload();
+
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            $query = $db->prepare("INSERT INTO yaptiklarimiz SET
+resim = ?,
+baslik = ?,
+aciklama = ?");
+            $insert = $query->execute([$resimok[1], $_POST["baslik"], $_POST["aciklama"]]);
+            if ($insert) {
+                $last_id = $db->lastInsertId();
+                header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+            }else{
+
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+
+            }
+
+
+        }
+
     }
+    // yaptiklarimiz bit
+
+
+
+///hizmetlerimiz başla
+///
+///
+    elseif ($_POST["sayfa"] == "hizmetler" and !empty($_POST["id"])) {
+        echo "yaptiklarimöiz";
+        if ($_FILES["fileToUpload"]["error"] == 4) {
+
+            $query = $db->query("SELECT resim from hizmetler where id='{$_POST["id"]}'")->fetch(PDO::FETCH_ASSOC);
+            if ($query) {
+                $resimok = [1, $query["resim"]];
+            }
+
+
+        } else {
+            $resimok = resim_upload();
+
+
+        }
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            try {
+                $query = "UPDATE hizmetler SET  resim=?, baslik=? , aciklama=? WHERE id='{$_POST["id"]}'";
+                $db->prepare($query)->execute([$resimok[1], $_POST["baslik"], $_POST["aciklama"]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+        }
+    } //hi<metler insert
+
+    elseif ($_POST["sayfa"] == "hizmetler") {
+
+
+        $resimok = resim_upload();
+
+        if ($resimok[0] == 0) {
+
+            echo $resimok[1];
+            header("location:" . $don . "&durum=" . $resimok[1]);
+
+        } else {
+            $query = $db->prepare("INSERT INTO hizmetler SET
+resim = ?,
+baslik = ?,
+aciklama = ?");
+            $insert = $query->execute([$resimok[1], $_POST["baslik"], $_POST["aciklama"]]);
+            if ($insert) {
+                $last_id = $db->lastInsertId();
+                header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+            }else{
+
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+
+            }
+
+
+        }
+
+    }
+
+
+//hizmetler bit
+
+
+
+
 
 
 
@@ -148,12 +247,58 @@ catch(PDOException $e)
 else{
 
 
-    echo  "işini düzgün yap ";
+    echo  "Post yok";
 }
 
 
+if(isset($_GET["sayfa"])) {
+
+    $don= "http://localhost/gocmeztesisat/admin/index.php?sayfa=".$_GET["sayfa"];
+
+    //yaptılarımız başla
+    if ($_GET["sayfa"] == "yaptiklarimiz" and !empty($_GET["id"])) {
 
 
+        {
+            try {
+
+                $query = $db->prepare("DELETE FROM yaptiklarimiz WHERE id =?");
+                $delete = $query->execute([$_GET["id"]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+        }
+
+
+    }
+//yaptılarımız bit
+
+    //hizmetler silme başla
+
+    elseif ($_GET["sayfa"] == "hizmetler" and !empty($_GET["id"])) {
+
+
+        {
+            try {
+
+                $query = $db->prepare("DELETE FROM hizmetler WHERE id =?");
+                $delete = $query->execute([$_GET["id"]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+        }
+
+
+    }
+
+    //hizmetler silme bit
+
+
+}
 
 function resim_upload()
 {
@@ -182,9 +327,9 @@ function resim_upload()
 //
 //    }
 // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 10000000) {
         $uploadOk = 0;
-        return [$uploadOk,"Resim 5 mb sınrını aşıyor"];
+        return [$uploadOk,"Resim 10 mb sınrını aşıyor"];
 
     }
 // Allow certain file formats

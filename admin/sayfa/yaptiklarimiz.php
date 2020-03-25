@@ -61,7 +61,7 @@ $anadizin=$sabit->anadizin;
                         <!-- DataTales Example -->
 
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Mevcut tablosu</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Mevcut tablosu  (açıklama ve başlıklar kısaltılmış gösterilir)</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive-lg">
@@ -153,9 +153,9 @@ foreach( $query as $row ){?>
                                             </td>
 
 
-                                            <td><p  class="overflow-hidden" > <?php  echo $row["baslik"]; ?>
+                                            <td><p  class="overflow-hidden" > <?php  echo substr($row["baslik"],0,10); ?>
                                                      </p></td>
-                                            <td><p  class="overflow-hidden" > <?php  echo $row["aciklama"]; ?> </p></td>
+                                            <td><p  class="overflow-hidden" > <?php  echo substr($row["aciklama"],0,15); ?> </p></td>
                                             <td><img src="http://localhost/gocmeztesisat/images/<?php  echo $row["resim"]; ?>" class="image img-responsive" width="100"  /> </td>
 
                                         </tr>

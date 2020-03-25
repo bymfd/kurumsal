@@ -11,7 +11,7 @@ foreach( $query as $row ){?>
             <h3>Kurumsal</h3>
         </div><!-- end section-title -->
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
+            <div class="text-center">
                 <h2><?php echo $row["baslik"] ?></h2>
                 <p class="lead"><?php echo $row["slogan"] ?></p>
             </div><!-- end col -->

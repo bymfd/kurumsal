@@ -9,7 +9,7 @@ $anadizin=$sabit->anadizin;
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Slider </h1>
+        <h1 class="h3 mb-0 text-gray-800">Hizmetlerimiz </h1>
 
     </div>
 
@@ -24,12 +24,18 @@ $anadizin=$sabit->anadizin;
 
                         <input type="file" class="custom-file" name="fileToUpload" id="fileToUpload" value="gocmez.png" >
 
-                        <input type="hidden" name="sayfa" value="slider" >
+                        <input type="hidden" name="sayfa" value="hizmetler" >
+
+                        <div class="row p-4" >
+                            <i class="text-center">Başlık </i>
+                            <input type="text"  maxlength="50" required class="text-box2 btn-block" name="baslik" >
+                        </div>
 
 
-
-
-
+                        <div class="row p-4" >
+                            <i class="text-center">Açıklama </i>
+                            <input type="" maxlength="158" required class="text-box2 btn-block" name="aciklama" >
+                        </div>
 
 
 
@@ -55,7 +61,7 @@ $anadizin=$sabit->anadizin;
                     <!-- DataTales Example -->
 
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Mevcut tablosu  (açıklama ve başlıklar kısaltılmış gösterilir)</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Mevcut tablosu (açıklama ve başlıklar kısaltılmış gösterilir)</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-lg">
@@ -80,14 +86,14 @@ $anadizin=$sabit->anadizin;
                                 <tbody>
 
                                 <?php
-                                $query = $db->query("SELECT * FROM yaptiklarimiz", PDO::FETCH_ASSOC);
+                                $query = $db->query("SELECT * FROM hizmetler", PDO::FETCH_ASSOC);
                                 if ( $query->rowCount() ){
                                 foreach( $query as $row ){?>
 
                                 <tr>
                                     <td>
 
-                                        <a href="fankfonk/fankfonk.php/?durum=sil&id=<?php echo $row["id"];?>&sayfa=yaptiklarimiz" class="fa fa-trash "> </a>
+                                        <a href="fankfonk/fankfonk.php/?durum=sil&id=<?php echo $row["id"];?>&sayfa=hizmetler" class="fa fa-trash "> </a>
 
 
                                         <!-- Button trigger modal -->
@@ -114,7 +120,7 @@ $anadizin=$sabit->anadizin;
 
                                                             <input type="file" class="custom-file" name="fileToUpload" id="fileToUpload" value="gocmez.png" >
 
-                                                            <input type="hidden" name="sayfa" value="yaptiklarimiz" >
+                                                            <input type="hidden" name="sayfa" value="hizmetler" >
                                                             <input type="hidden" name="id" value="<?php echo $row["id"];?>" >
 
 
@@ -126,7 +132,7 @@ $anadizin=$sabit->anadizin;
 
                                                             <div class="row p-4" >
                                                                 <i class="text-center">Açıklama </i>
-                                                                <input type="text" value="<?php  echo $row["aciklama"]; ?>" maxlength="158" required class="text-box2 btn-block" name="aciklama" >
+                                                                <input type="text" value="<?php  echo ["aciklama"]; ?>" maxlength="158" required class="text-box2 btn-block" name="aciklama" >
                                                             </div>
 
 

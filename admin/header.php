@@ -69,8 +69,8 @@ $anadizin=$sabit->anadizin;
             <div id="ayar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">site yönetimi ayarları:</h6>
-                    <a class="collapse-item" href="?sayfa=ayar">site ayar</a>
-                    <a class="collapse-item" href="?sayfa=user">admin bilgileri</a>
+                    <a class="collapse-item" href="?sayfa=ayar">Site ayar</a>
+                    <a class="collapse-item" href="?sayfa=user">Admin bilgileri</a>
                     <a class="collapse-item" href="?sayfa=iletisim">İletişim </a>
                 </div>
             </div>
@@ -97,7 +97,7 @@ $anadizin=$sabit->anadizin;
                     <h6 class="collapse-header">İçerik yönetimi ayarları:</h6>
                     <a class="collapse-item" href="?sayfa=slider">Slider</a>
                     <a class="collapse-item" href="?sayfa=kurumsal">Kurumsal</a>
-                    <a class="collapse-item" href="?sayfa=hizmetlerimiz">Hizmetlerimiz</a>
+                    <a class="collapse-item" href="?sayfa=hizmetler">Hizmetlerimiz</a>
                     <a class="collapse-item" href="?sayfa=yaptiklarimiz">Yaptıklarımız</a>
                 </div>
             </div>
