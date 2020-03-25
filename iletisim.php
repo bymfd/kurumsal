@@ -49,8 +49,8 @@ foreach( $query as $row ){?>
                     <ul>
                         <li><i class="fa fa-phone"></i> <span><?php echo $row["telefon"]?></span></li>
                         <li><i class="fa fa-fax"></i> <span><?php echo $row["fax"]?></span></li>
-                        <li><i class="fa fa-facebook"></i> <span><a href="https://<?php echo $row["facebook"]?>"><?php echo $row["facebook"]?></a></span></li>
-                        <li><i class="fa fa-instagram"></i> <span><a href="https://<?php echo $row["instagram"]?>"><?php echo $row["instagram"]?></a></span></li>
+                        <li><i class="fa fa-facebook"></i> <span><a href="https://<?php echo $row["facebook"];?>"><?php echo $row["facebook"]?></a></span></li>
+                        <li><i class="fa fa-instagram"></i> <span><a href="https://<?php echo $row["instagram"];?>"><?php echo $row["instagram"]?></a></span></li>
 
                     </ul>
                 </div><!-- end contact details -->

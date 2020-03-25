@@ -61,7 +61,7 @@ foreach( $query as $row ){?>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand about-img" href="index.php"><img src="<?php  echo $resim_ana_url.$row["logo"]; ?>" alt="<?php  echo $row["title"]; ?>"></a>
+                    <a class="navbar-brand about-img" href="<?php $site_url=$sabit->site_url;  echo $site_url; ?>"><img src="<?php  echo $resim_ana_url.$row["logo"]; ?>" alt="<?php  echo $row["title"]; ?>"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
