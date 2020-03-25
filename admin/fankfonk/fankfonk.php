@@ -58,6 +58,27 @@ if (isset($_POST["sayfa"])) {
     //user sayfası güncelleme bit
 
 
+
+    //mesaj oku
+
+    elseif ($_POST["sayfa"] == "mesaj") {
+
+        try {
+            $query = "UPDATE mesaj SET oku=? WHERE id='{$_POST["id"]}'";
+            $db->prepare($query)->execute([true]);
+        } catch (PDOException $e) {
+            header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+        }
+
+
+        header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+
+
+    }
+    //mesaj sayfası güncelleme bit
+
+
+
     //iletişim sayfa güncelle başla
     elseif ($_POST["sayfa"] == "iletisim") {
 
@@ -391,6 +412,31 @@ if(isset($_GET["sayfa"])) {
     }
 
     //sliderr silme bit
+
+
+    //mesaj silme başla
+
+    elseif ($_GET["sayfa"] == "mesaj" and !empty($_GET["id"])) {
+
+
+        {
+            try {
+
+                $query = $db->prepare("DELETE FROM mesaj WHERE id =?");
+                $delete = $query->execute([$_GET["id"]]);
+            } catch (PDOException $e) {
+                header("Location:" . $don . "&durum=güncelleme hatası veritabanına yazılamadı birazdan tekrar deneyin");
+            }
+
+            header("Location:" . $don . "&durum=işlem başarılı bir şekilde tamamlandı");
+        }
+
+
+    }
+
+    //mesaj silme bit
+
+
 
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
 
@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Forgot Password</title>
+  <title>Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,28 +33,57 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+              <div class="col-lg-6 d-none d-lg-block container ">
+<?php
+if(isset($_GET["durum"]) and $_GET["durum"]!="cik"){?>
+
+                  <div class="p-5">
+                      <div class="text-center">
+                          <h1 class="h4 text-gray-900 mb-4"> hoydaaa </h1>
+
+
+    <?php echo $_GET["durum"]; }
+
+    else if(isset($_GET["durum"]) and $_GET["durum"]=="cik"){?>
+
+                          <div class="p-5">
+                              <div class="text-center">
+                                  <h1 class="h4 text-gray-900 mb-4"> Çıkış Yapıldı</h1>
+
+
+  <?php
+  session_start();
+  $_SESSION = [];
+  session_destroy();
+
+    }
+
+
+?>
+                      </div></div>
+
+              </div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                    <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                    <h1 class="h4 text-gray-900 mb-4"><i class="fa fa-key"></i></h1>
                   </div>
-                  <form class="user">
+
+                  <form  action="fankfonk/kontrol.php" method="post">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" name="name" class="form-control form-control-user" required minlength="6" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Kullanıcı adı...">
                     </div>
-                    <a href="login.php" class="btn btn-primary btn-user btn-block">
-                      Reset Password
-                    </a>
+                    <div class="form-group">
+                      <input type="password"  name="pass" class="form-control form-control-user" required minlength="6" id="exampleInputPassword" placeholder="Parola">
+                    </div>
+
+                      <div class="form-group">
+                      <input type="submit" class="form-control form-control-user   btn-success" value="Kaydet">
+                      </div>
                   </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="login.php">Already have an account? Login!</a>
-                  </div>
+
+
+
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ if (isset($_GET["sayfa"])) {
 }
 
 else{
-    $sayfa="ayar";
+    $sayfa="mesaj";
 
 }
 include "sayfa/".$sayfa.".php";

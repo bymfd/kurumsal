@@ -33,7 +33,7 @@
             <div class="modal-body">Kaydedilmemiş Değişiklikler kaybolacaktır çıkış yapmak istediğinden emin misin ?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">İptal</button>
-                <a class="btn btn-primary" href="fankfonk/kontrol.php">Evet Çıkış Yap</a>
+                <a class="btn btn-primary" href="login.php?durum=cik">Evet Çıkış Yap</a>
             </div>
         </div>
     </div>

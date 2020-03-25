@@ -2,6 +2,9 @@
 include "header.php";
 ?>
 
+
+
+
 <div class="container-fluid ">
 
 <?php
@@ -35,6 +38,29 @@ include "header.php";
     </div>
     <div id="iletisim">
         <?php
+
+
+        if(@$_POST["mesaj"]){
+            $query = $db->prepare("INSERT INTO mesaj SET
+isim = ?,
+telefon= ?,
+mail = ?,
+konu = ?,
+mesaj = ?
+");
+            $insert = $query->execute([$_POST["isim"], $_POST["telefon"], $_POST["mail"], $_POST["konu"], $_POST["mesaj"]]);
+            if ($insert) {
+                $last_id = $db->lastInsertId();
+                echo "okkay";
+            }else{
+                echo "olmadı";
+
+            }
+
+
+
+        }
+
 
         include "iletisim.php";
         ?>

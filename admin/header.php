@@ -1,5 +1,12 @@
 <?php
+include_once "fankfonk/kontrol.php";
+$yetkili=new yetki();
+if ($yetkili->yetkisor()!="mfd"){
+    header("Location:".$adminpanel."login.php"."?durum=önce giriş yapmalısın !" );
+}
+
 include_once "fankfonk/db.php";
+
 
 $sabit = new sabitler();
 $anadizin=$sabit->anadizin;
@@ -72,6 +79,7 @@ $anadizin=$sabit->anadizin;
                     <a class="collapse-item" href="?sayfa=ayar">Site ayar</a>
                     <a class="collapse-item" href="?sayfa=user">Admin bilgileri</a>
                     <a class="collapse-item" href="?sayfa=iletisim">İletişim </a>
+                    <a class="collapse-item" href="?sayfa=mesaj">Mesajlar </a>
                 </div>
             </div>
         </li>

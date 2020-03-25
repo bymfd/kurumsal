@@ -1,6 +1,8 @@
 
 <?php
 
+
+
 $query = $db->query("SELECT * FROM iletisim where id=1", PDO::FETCH_ASSOC);
 if ( $query->rowCount() ){
 foreach( $query as $row ){?>
@@ -21,23 +23,24 @@ foreach( $query as $row ){?>
             </div>
 
             <div class="col-md-5">
-                <form role="form" class="contactform">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="İSİM" required>
+                <form class="contactform" action="index.php" method="post">
+                    <div class="form-group" >
+                        <input type="text" class="form-control" id="name" name="isim" MAXLENGTH="45" minlength="6" placeholder="İSİM" required>
+                        <input type="hidden" name="mesaj">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="E-MAIL" required>
+                        <input type="email" class="form-control" id="email" MAXLENGTH="100" minlength="6" name="mail" placeholder="E-MAIL" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="TELEFON" required>
+                        <input type="text" class="form-control" id="phone" MAXLENGTH="12" minlength="12" name="telefon" placeholder="5420000000" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="KONU" required>
+                        <input type="text" class="form-control" id="subject" MAXLENGTH="50" minlength="6" name="konu" placeholder="KONU" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="message" placeholder="MESAJ" maxlength="140" rows="7"></textarea>
+                        <textarea class="form-control" id="message" name="mesaj" minlength="50" placeholder="MESAJ" MAXLENGTH="200" rows="7"></textarea>
                     </div>
-                    <button type="button" id="submit" name="submit" class="btn btn-primary"> GÖNDER </button>
+                    <button type="submit" id="submit"  class="btn btn-primary"> GÖNDER </button>
                 </form>
             </div><!-- end col -->
 
