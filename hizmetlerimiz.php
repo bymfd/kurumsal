@@ -8,6 +8,8 @@
         </div><!-- end section-title -->
         <div class="row service-list">
 <?php
+$resim_ana_url=$sabit->resim_ana_url;
+
 $sql = $db->prepare("SELECT * FROM hizmetler");
 $sql->execute();
 $yer=1;
@@ -17,7 +19,7 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
 
             <div class="col-md-4 col-sm-12 col-xs-12 first">
                 <div class="service-wrapper">
-                    <img src="images/<?php echo $row["resim"];?>" alt="" class="img-responsive">
+                    <img src="<?php echo $resim_ana_url.$row["resim"];?>" alt="" class="img-responsive">
                     <div class="service-details">
                         <h4><a  title=""><?php echo $row["baslik"];?></a></h4>
                         <p><?php echo $row["aciklama"];?></p>
@@ -36,7 +38,7 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
 
         <div class="col-md-4 col-sm-12 col-xs-12 ">
             <div class="service-wrapper">
-                <img src="images/<?php echo $row["resim"];?>" alt="" class="img-responsive">
+                <img src="<?php echo $resim_ana_url.$row["resim"];?>" alt="" class="img-responsive">
                 <div class="service-details">
                     <h4><a title=""><?php echo $row["baslik"];?></a></h4>
                     <p><?php echo substr($row["aciklama"],0,150);?></p>
@@ -59,7 +61,7 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
 
                 <div class="col-md-4 col-sm-12 col-xs-12 last ">
             <div class="service-wrapper">
-                <img src="images/<?php echo $row["resim"];?>" alt="" class="img-responsive">
+                <img src="<?php echo $resim_ana_url.$row["resim"];?>" alt="" class="img-responsive">
                 <div class="service-details">
                     <h4><a title=""><?php echo $row["baslik"];?></a></h4>
             <p><?php echo $row["aciklama"];?></p>
@@ -105,7 +107,7 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
                 <div class="modal-body">
 
 
-                    <img src="images/<?php echo $row["resim"]?>">
+                    <img src="<?php echo $resim_ana_url.$row["resim"]?>">
                     <p>
 
                         <?php echo $row["aciklama"] ?>

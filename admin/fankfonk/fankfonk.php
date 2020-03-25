@@ -450,9 +450,7 @@ function resim_upload()
 {
 
     $sabit = new sabitler();
-    $rootfiledir=$sabit->anadizin;
-    $target_dir = $rootfiledir."images/";
-
+    $target_dir = $sabit->resim_ana_dizin;
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

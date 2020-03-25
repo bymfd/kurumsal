@@ -1,6 +1,6 @@
 <?php
 $sabit=new  sabitler();
-$anadizin=$sabit->anadizin;
+$resim_ana_url=$sabit->resim_ana_url;
 $query = $db->query("SELECT * FROM ayar where id=1", PDO::FETCH_ASSOC);
 if ( $query->rowCount() ){
     foreach( $query as $row ){?>
@@ -26,7 +26,7 @@ if ( $query->rowCount() ){
                           <i class="text-center">Site Logo </i><br>
                           <i class="text-center">Mevcut </i>
 
-                          <img class="img-thumbnail " src=<?php //echo $anadizin?>/gocmeztesisat/images/<?php  echo $row["logo"]; ?>>
+                          <img class="img-thumbnail " src=<?php echo $resim_ana_url.$row["logo"]; ?>>
 
                           <input type="file" class="custom-file" name="fileToUpload" id="fileToUpload" value="gocmez.png" >
 

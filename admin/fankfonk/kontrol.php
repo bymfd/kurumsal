@@ -1,6 +1,7 @@
 <?php
 include ("db.php");
-$adminpanel="http://localhost/gocmeztesisat/admin/";
+$sabit=new  sabitler();
+$adminpanel=$sabit->admin_url;
 class yetki{
  public function yetkisor(){
      session_start();

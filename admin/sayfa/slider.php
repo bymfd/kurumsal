@@ -1,6 +1,6 @@
 <?php
 $sabit=new  sabitler();
-$anadizin=$sabit->anadizin;
+$resim_ana_url=$sabit->resim_ana_url;
 ?>
 
 
@@ -108,7 +108,7 @@ $anadizin=$sabit->anadizin;
                                                             <i class="text-center">Resim </i><br>
                                                             <i class="text-center">Mevcut </i>
 
-                                                            <img class="img-thumbnail " src=<?php //echo $anadizin?>/gocmeztesisat/images/<?php  echo $row["resim"]; ?>>
+                                                            <img class="img-thumbnail " src=<?php  echo $resim_ana_url.$row["resim"]; ?>>
 
                                                             <input type="file" class="custom-file" name="fileToUpload" id="fileToUpload" value="gocmez.png" >
 
@@ -132,7 +132,7 @@ $anadizin=$sabit->anadizin;
                         </td>
 
 
-                        <td><img src="http://localhost/gocmeztesisat/images/<?php  echo $row["resim"]; ?>" class="image img-responsive" width="100"  /> </td>
+                        <td><img src="<?php  echo $resim_ana_url.$row["resim"]; ?>" class="image img-responsive" width="100"  /> </td>
 
                         </tr>
                         <?php

@@ -12,7 +12,7 @@
         <div class="owl-carousel owl-theme lightcasestudies withhover">
 
             <?php
-
+            $resim_ana_url=$sabit->resim_ana_url;
             $sql = $db->prepare("SELECT * FROM yaptiklarimiz");
             $sql->execute();
             $yer=1;
@@ -31,7 +31,7 @@
 
                 <div class="case-box ">
 
-                    <img src="images/<?php echo $row["resim"]?>">
+                    <img src="<?php echo $resim_ana_url.$row["resim"]?>">
 
                     <div class="magnifier ">
 
@@ -80,7 +80,7 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
                 <div class="modal-body">
 
 
-                    <img src="images/<?php echo $row["resim"]?>">
+                    <img src="<?php echo $resim_ana_url.$row["resim"]?>">
                     <p>
 
                         <?php echo $row["aciklama"] ?>

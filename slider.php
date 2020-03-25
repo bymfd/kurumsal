@@ -9,6 +9,7 @@
 
 
                 <?php
+                $resim_ana_url=$sabit->resim_ana_url;
                 $yer=1;
               //  include "admin/fankfonk/db.php";
                 $query = $db->query("SELECT * FROM slider", PDO::FETCH_ASSOC);
@@ -19,14 +20,14 @@
 
 
                         <div class="item active">
-                            <img src="images/<?php echo $row["resim"];?>" alt="Los Angeles" style="width:100%;">
+                            <img src="<?php echo $resim_ana_url.$row["resim"];?>" alt="Los Angeles" style="width:100%;">
                         </div>
                             <?php  $yer++; }else{?>
 
 
 
                 <div class="item">
-                    <img src="images/<?php echo $row["resim"];?>" alt="Chicago" style="width:100%">
+                    <img src="<?php echo $resim_ana_url.$row["resim"];?>" alt="Chicago" style="width:100%">
                 </div>
 
                         <?php }}} ?>
