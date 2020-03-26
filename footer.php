@@ -20,9 +20,9 @@ foreach( $query as $row ){?>
                 <div class="widget clearfix">
                     <h4 class="widget-title"><?php echo $row["title"]; ?></h4>
                     <ul>
-                        <li><a href="kurumsal.php">Kurumsal</a></li>
-                        <li><a href="hizmetlerimiz.php">Hizmetlerimiz</a></li>
-                        <li><a href="contact.php">İletişim</a></li>
+                        <li><a href="<?php echo $site_url."kurumsal" ?>">Kurumsal</a></li>
+                        <li><a href="<?php echo $site_url."kurumsal" ?>">Hizmetlerimiz</a></li>
+                        <li><a href="<?php echo $site_url."kurumsal" ?>">İletişim</a></li>
                     </ul>
                 </div><!-- end widget -->
             </div><!-- end col -->

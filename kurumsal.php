@@ -1,5 +1,7 @@
 <?php
 
+include "header.php";
+
 $query = $db->query("SELECT * FROM kurumsal where id=1", PDO::FETCH_ASSOC);
 if ( $query->rowCount() ){
 foreach( $query as $row ){?>
@@ -36,4 +38,6 @@ foreach( $query as $row ){?>
 }
 }
 
+
+include "footer.php";
 ?>

@@ -8,6 +8,7 @@
         </div><!-- end section-title -->
         <div class="row service-list">
 <?php
+include "header.php";
 $resim_ana_url=$sabit->resim_ana_url;
 
 $sql = $db->prepare("SELECT * FROM hizmetler");
@@ -123,4 +124,9 @@ while($row=$sql->fetch(PDO::FETCH_ASSOC)) {
 
 
     <?php
-}?>
+}
+
+include "footer.php";
+
+?>
+

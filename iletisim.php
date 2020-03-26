@@ -1,6 +1,50 @@
 
+
+
 <?php
 
+$degisken = $_SERVER['REQUEST_URI'];
+if($degisken[(strlen($degisken)-1)]=="/"){
+
+  //  header("location:".$degisken[strlen($degisken)-1]);
+}
+include "header.php";
+if(@$_POST["mesaj"]){
+    $query = $db->prepare("INSERT INTO mesaj SET
+isim = ?,
+telefon= ?,
+mail = ?,
+konu = ?,
+mesaj = ?
+");
+    $insert = $query->execute([$_POST["isim"], $_POST["telefon"], $_POST["mail"], $_POST["konu"], $_POST["mesaj"]]);
+    if ($insert) {
+        $last_id = $db->lastInsertId();
+        echo "okkay";
+    }else{
+        echo "olmadı";
+
+    }
+
+
+
+}
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
 
 
 $query = $db->query("SELECT * FROM iletisim where id=1", PDO::FETCH_ASSOC);
@@ -11,7 +55,7 @@ foreach( $query as $row ){?>
     <div class="container">
         <div class="section-title text-center">
 
-            <h3>İletişim</h3>
+            <h3>İletişim </h3>
         </div><!-- end section-title -->
         <div class="row">
             <div class="col-md-4">
@@ -23,7 +67,7 @@ foreach( $query as $row ){?>
             </div>
 
             <div class="col-md-5">
-                <form class="contactform" action="index.php" method="post">
+                <form class="contactform" action="iletisim.php" method="post">
                     <div class="form-group" >
                         <input type="text" class="form-control" id="name" name="isim" MAXLENGTH="45" minlength="6" placeholder="İSİM" required>
                         <input type="hidden" name="mesaj">
@@ -61,5 +105,5 @@ foreach( $query as $row ){?>
     <?php
 }
 }
-
+include "footer.php";
 ?>

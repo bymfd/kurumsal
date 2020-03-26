@@ -65,10 +65,10 @@ foreach( $query as $row ){?>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.php">Ana Sayfa</a></li>
-                        <li><a href="#kurumsal">Kurumsal</a></li>
-                        <li><a href="#hizmetlerimiz">Hizmetlerimiz</a></li>
-                        <li><a href="#iletisim">İletişim</a></li>
+                        <li class="active"><a href="<?php echo $site_url; ?>">Ana Sayfa</a></li>
+                        <li><a href="<?php echo $site_url."kurumsal"; ?>">Kurumsal</a></li>
+                        <li><a href="<?php echo $site_url."hizmetlerimiz"?>" >Hizmetlerimiz</a></li>
+                        <li><a href="<?php echo $site_url."iletisim"?>">İletişim</a></li>
                        <?php
                        $query = $db->query("SELECT telefon from iletisim WHERE id =1")->fetch(PDO::FETCH_ASSOC);
                        if ( $query ){
