@@ -7,3 +7,9 @@ php7 mysql kullanılarak yazılmış canlıya alınmak için uygun olmayan basic
  <img src="https://github.com/bymfd/kurumsal/blob/master/ekran/radmin.png" width="500"/>
 
 
+<br>
+<h4>Sıhhi Tesisat</h4>
+ <img src="https://github.com/bymfd/kurumsal/blob/master/ekran/gindex.png" width="500"/>
+
+
+
